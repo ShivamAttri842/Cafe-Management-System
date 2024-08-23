@@ -1,0 +1,8 @@
+1 Coffee 2.50
+2 Tea 1.75
+3 Sandwich 5.00
+4 Cake 3.25
+5 Juice 2.00
+6 Salad 4.50
+7 Pizza 7.00
+8 Burger 6.00
