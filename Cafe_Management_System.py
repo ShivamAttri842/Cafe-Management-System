@@ -21,28 +21,33 @@ def display_menu(menu):
 def take_multiple_orders(menu, orders):
     try:
         user_name = input("Enter your name: ")
-        user_contact = input("Enter your contact number: ")
-        print("\nEnter your orders in the format 'item_number quantity'. Type 'done' when finished.")
         
+        # Validate the 10-digit mobile number
         while True:
-            order_input = input("Enter item and quantity: ")
-            if order_input.lower() == 'done':
+            user_contact = input("Enter your 10-digit contact number: ")
+            if len(user_contact) == 10 and user_contact.isdigit():
+                break
+            else:
+                print("Invalid contact number. Please enter a 10-digit number.")
+
+        print("\nEnter your orders one by one. Type 'done' after entering all orders.")
+
+        while True:
+            id_input = input("Enter item ID (or 'done' to finish): ")
+            if id_input.lower() == 'done':
                 break
             
-            parts = order_input.split()
-            if len(parts) != 2:
-                print("Invalid input. Please enter in the format 'item_number quantity'.")
-                continue
-            
-            id = int(parts[0])
-            quantity = int(parts[1])
-            item = next((item for item in menu if item.id == id), None)
-            
-            if item:
-                total = item.price * quantity
-                orders.append(Order(id, item.name, quantity, total, user_name, user_contact))
-            else:
-                print(f"Invalid item number: {id}. Please try again.")
+            try:
+                id = int(id_input)
+                item = next((item for item in menu if item.id == id), None)
+                if item:
+                    quantity = int(input(f"Enter quantity for {item.name}: "))
+                    total = item.price * quantity
+                    orders.append(Order(id, item.name, quantity, total, user_name, user_contact))
+                else:
+                    print(f"Invalid item ID: {id}. Please try again.")
+            except ValueError:
+                print("Invalid input. Please enter numeric values for item ID and quantity.")
     except ValueError:
         print("Invalid input. Please enter numeric values only.")
 
