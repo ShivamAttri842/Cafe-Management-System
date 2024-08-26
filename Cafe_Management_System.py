@@ -1,3 +1,6 @@
+import os
+import time
+
 class MenuItem:
     def __init__(self, id, name, price):
         self.id = id
@@ -12,6 +15,9 @@ class Order:
         self.total = total
         self.user_name = user_name
         self.user_contact = user_contact
+
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def display_menu(menu):
     print("\nMenu:")
@@ -88,21 +94,23 @@ def main():
     orders = []
 
     while True:
+        clear_terminal()
         print("\nHeyy welcome To Our cafe")
-        print("\n1. Display Menu\n2. Take Orders\n3. Display Orders\n4. Calculate Bill\n5. Save Orders\n6. Exit")
+        display_menu(menu)
+        print("\n1. Take Orders\n2. Display Orders\n3. Calculate Bill\n4. Save Orders\n5. Exit")
         try:
             choice = int(input("Enter your choice: "))
             if choice == 1:
-                display_menu(menu)
-            elif choice == 2:
                 take_multiple_orders(menu, orders)
-            elif choice == 3:
+            elif choice == 2:
                 display_orders(orders)
-            elif choice == 4:
+            elif choice == 3:
                 print(f"Total Bill: ${calculate_bill(orders):.2f}")
-            elif choice == 5:
+                input("\nPress Enter to continue...")
+            elif choice == 4:
                 save_orders(orders)
-            elif choice == 6:
+                input("\nPress Enter to continue...")
+            elif choice == 5:
                 break
             else:
                 print("Invalid choice. Please try again.")
