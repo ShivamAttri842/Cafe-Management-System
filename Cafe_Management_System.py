@@ -84,7 +84,7 @@ def main():
 
     while True:
         print("\nHeyy welcome To Our cafe")
-        print("\n1. Display Menu\n2. Take Order\n3. Take Multiple Orders\n4. Display Orders\n5. Calculate Bill\n6. Save Orders\n7. Exit")
+        print("\n1. Display Menu\n2. Take Orders\n3. Display Orders\n4. Calculate Bill\n5. Save Orders\n6. Exit")
         try:
             choice = int(input("Enter your choice: "))
             if choice == 1:
@@ -92,14 +92,12 @@ def main():
             elif choice == 2:
                 take_multiple_orders(menu, orders)
             elif choice == 3:
-                take_multiple_orders(menu, orders)
-            elif choice == 4:
                 display_orders(orders)
-            elif choice == 5:
+            elif choice == 4:
                 print(f"Total Bill: ${calculate_bill(orders):.2f}")
-            elif choice == 6:
+            elif choice == 5:
                 save_orders(orders)
-            elif choice == 7:
+            elif choice == 6:
                 break
             else:
                 print("Invalid choice. Please try again.")
